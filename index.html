@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fold & Fresh | Doorstep laundry and dry cleaning</title>
+<meta name="description" content="Doorstep laundry and dry cleaning: wash and fold, ironing, dry cleaning, stain removal and more, picked up and delivered to your door.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* --- WASHING MACHINE ANIMATION --- */
+  .washer-animation-container {
+    width: 320px;
+    height: 320px;
+    background: #e6f4f1;
+    border: 12px solid #0E6369;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset 0 0 15px rgba(0,0,0,0.1);
+    margin: 0 auto;
+  }
+  .washer-drum {
+    width: 230px;
+    height: 230px;
+    background: radial-gradient(circle, #2c3e50 0%, #1a252f 100%);
+    border: 8px solid #a8c3bc;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    animation: spin 3s linear infinite;
+  }
+  .washer-clothes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .item-1 {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 70px;
+    height: 70px;
+    background: #ff6b6b;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.85;
+  }
+  .item-2 {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background: #3BB0A4;
+    border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
+    opacity: 0.85;
+  }
+  .item-3 {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #ffe66d;
+    border-radius: 50% 50% 20% 80% / 20% 80% 30% 70%;
+    opacity: 0.85;
+  }
+  .washer-water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(52, 152, 219, 0.4);
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+  }
+  .washer-glass-glare {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    border-top: 8px solid rgba(255, 255, 255, 0.5);
+    border-left: 4px solid rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* --- 3 TOP / 3 BOTTOM SERVICES GRID CSS --- */
+  .services-grid-3x2 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Forces 3 items per row */
+    gap: 1.5rem !important;
+    margin-top: 2rem;
+  }
+
+  .services-grid-3x2 .row-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #ffffff;
+    border: 1px solid var(--line, #e4e7eb);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .services-grid-3x2 .row-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Responsive breakdown for tablet and mobile screens */
+  @media (max-width: 992px) {
+    .services-grid-3x2 {
+      grid-template-columns: repeat(2, 1fr) !important; /* 2 items per row on tablets */
+    }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid-3x2 {
+      grid-template-columns: 1fr !important; /* 1 item per row on mobile */
+    }
+  }
+  /* Force the dynamic card container to use a 3-column grid */
+#featured,
+.svc-grid,
+.grid.g3,
+.grid.g4 {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important; /* 3 columns across */
+  gap: 1.5rem !important;
+}
+
+/* Ensure individual cards take full width of their grid cell */
+#featured .card,
+.svc-grid > *,
+.grid > * {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 992px) {
+  #featured,
+  .svc-grid,
+  .grid.g3,
+  .grid.g4 {
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 per row on tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  #featured,
+  .svc-grid,
+  .grid.g3,
+  .grid.g4 {
+    grid-template-columns: 1fr !important; /* 1 per row on mobile */
+  }
+}
+
+  /* --- SERVICE CARD SLIDER (Just added) --- */
+  .ff-viewport{
+    --gap:1.5rem; --vis:3;
+    overflow:hidden; padding:.6rem 0 1.4rem;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  }
+  .ff-viewport .svc-grid#featured{
+    display:flex !important; grid-template-columns:none !important;
+    gap:var(--gap) !important; transition:transform .6s cubic-bezier(.4,0,.2,1);
+    will-change:transform;
+  }
+  .ff-viewport #featured > *{
+    flex:0 0 calc((100% - (var(--vis) - 1) * var(--gap)) / var(--vis)) !important;
+    width:auto !important; max-width:none !important; min-width:0;
+  }
+  .ff-viewport.no-anim .svc-grid#featured{transition:none !important}
+  .ff-controls{display:flex;gap:.6rem;justify-content:flex-end;margin-top:-.4rem}
+  .ff-controls button{
+    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);
+    background:var(--panel);color:var(--ink);cursor:pointer;font-size:1.2rem;line-height:1;
+    display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s;
+  }
+  .ff-controls button:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  html[dir="rtl"] .ff-controls button span{display:inline-block;transform:scaleX(-1)}
+  @media (max-width:992px){.ff-viewport{--vis:2}}
+  @media (max-width:600px){.ff-viewport{--vis:1}}
+
+  /* --- 3D LAUNDRY SCENE (hero) --- */
+  .scene3d{position:relative;width:100%;max-width:480px;aspect-ratio:1;margin-inline:auto}
+  .s3-stage{position:absolute;left:0;top:0;width:420px;height:420px;transform-origin:0 0;transform:scale(var(--sc,1));perspective:1200px}
+  .s3-glow{position:absolute;inset:6% 6%;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(59,176,164,.35),rgba(59,176,164,0) 68%)}
+  .s3-shadow{position:absolute;left:50%;bottom:34px;width:270px;height:46px;margin-left:-135px;border-radius:50%;background:radial-gradient(ellipse,rgba(8,63,68,.45),rgba(8,63,68,0) 70%);filter:blur(3px)}
+  .s3-rot{position:absolute;left:50%;top:47%;width:0;height:0;transform-style:preserve-3d;
+    transform:rotateX(calc(-9deg + var(--tx,0deg))) rotateY(var(--ty,0deg));transition:transform .25s ease-out}
+  .s3-sway{position:absolute;left:0;top:0;transform-style:preserve-3d;animation:s3sway 9s ease-in-out infinite alternate !important}
+  @keyframes s3sway{from{transform:rotateY(-34deg) translateY(-4px)}to{transform:rotateY(-12deg) translateY(6px)}}
+
+  .s3-machine{position:absolute;left:-95px;top:-125px;width:190px;height:250px;transform-style:preserve-3d}
+  .s3-face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .s3-front{left:0;top:0;width:190px;height:250px;border-radius:16px;transform:translateZ(85px);
+    background:linear-gradient(160deg,#ffffff 0%,#e3f1ed 100%);box-shadow:inset 0 0 0 2px #c5ddd6}
+  .s3-back{left:0;top:0;width:190px;height:250px;background:#cfe3dd;transform:rotateY(180deg) translateZ(85px)}
+  .s3-right{left:10px;top:0;width:170px;height:250px;transform:rotateY(90deg) translateZ(95px);background:linear-gradient(90deg,#bcd8d0,#d6eae5)}
+  .s3-left{left:10px;top:0;width:170px;height:250px;transform:rotateY(-90deg) translateZ(95px);background:linear-gradient(90deg,#e0f0ec,#c7e0d9)}
+  .s3-top{left:0;top:40px;width:190px;height:170px;transform:rotateX(90deg) translateZ(125px);background:linear-gradient(180deg,#ffffff,#e9f5f1);border-radius:14px 14px 4px 4px}
+  .s3-top::after{content:"";position:absolute;left:14px;top:14px;width:70px;height:14px;border-radius:7px;background:#0E6369;opacity:.85}
+  .s3-bottom{left:0;top:40px;width:190px;height:170px;transform:rotateX(-90deg) translateZ(125px);background:#9fc2b9}
+
+  .s3-panel{position:absolute;left:12px;right:12px;top:12px;height:46px;border-radius:10px;background:linear-gradient(120deg,#0E6369,#0b4a50);display:flex;align-items:center;gap:8px;padding:0 10px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
+  .s3-disp{flex:1;height:22px;border-radius:5px;background:#0a2f33;color:#7ff0dd;font:700 11px/22px 'Courier New',monospace;text-align:center;letter-spacing:.12em;animation:s3blink 2.4s steps(2) infinite !important}
+  @keyframes s3blink{50%{color:#3bb0a4}}
+  .s3-dial{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#b9d3cc);border:2px solid #dff3ee;position:relative}
+  .s3-dial::after{content:"";position:absolute;left:50%;top:2px;width:2px;height:7px;background:#ff8a5c;margin-left:-1px;border-radius:2px;transform-origin:50% 8px;animation:s3dial 6s ease-in-out infinite alternate !important}
+  @keyframes s3dial{from{transform:rotate(-50deg)}to{transform:rotate(80deg)}}
+
+  .s3-door{position:absolute;left:30px;top:76px;width:130px;height:130px;border-radius:50%;padding:11px;
+    background:linear-gradient(145deg,#f7fcfb,#98b7af);box-shadow:0 6px 12px rgba(8,63,68,.35),inset 0 0 0 2px #fff;transform:translateZ(3px)}
+  .s3-glass{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 30%,#3f7f89,#0f2f39 70%);box-shadow:inset 0 0 14px rgba(0,0,0,.6)}
+  .s3-water{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(80,180,230,.45);animation:s3water 3s ease-in-out infinite alternate !important}
+  @keyframes s3water{from{height:42%}to{height:52%}}
+  .s3-drum{position:absolute;inset:0;animation:s3spin 3.2s linear infinite !important}
+  @keyframes s3spin{to{transform:rotate(360deg)}}
+  .s3-drum i{position:absolute;display:block;opacity:.92}
+  .s3-drum i:nth-child(1){left:14px;top:12px;width:44px;height:44px;background:#ff6b6b;border-radius:40% 60% 70% 30%/40% 50% 60% 50%}
+  .s3-drum i:nth-child(2){right:10px;bottom:12px;width:50px;height:50px;background:#3BB0A4;border-radius:60% 40% 30% 70%/50% 30% 70% 50%}
+  .s3-drum i:nth-child(3){right:16px;top:22px;width:36px;height:36px;background:#ffe66d;border-radius:50% 50% 20% 80%/20% 80% 30% 70%}
+  .s3-drum i:nth-child(4){left:26px;bottom:14px;width:30px;height:30px;background:#ffffff;border-radius:50%;opacity:.8}
+  .s3-glare{position:absolute;inset:6px;border-radius:50%;border-top:5px solid rgba(255,255,255,.55);border-left:3px solid rgba(255,255,255,.2);pointer-events:none}
+  .s3-brand{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:800 12px var(--fh);color:#0E6369;letter-spacing:.06em}
+  .s3-brand b{color:#ff8a5c}
+
+  .s3-item{position:absolute;left:0;top:0;transform:translate3d(var(--x),var(--y),var(--z));transform-style:preserve-3d}
+  .s3-bob{transform-style:preserve-3d;animation:s3bob var(--t,4s) ease-in-out infinite alternate !important;animation-delay:var(--d,0s) !important}
+  @keyframes s3bob{from{transform:translateY(-9px) rotate(-8deg)}to{transform:translateY(9px) rotate(8deg)}}
+  .s3-item svg{display:block;width:var(--s,80px);height:auto;filter:drop-shadow(0 8px 6px rgba(8,63,68,.28))}
+  .s3-bub{width:var(--s,20px);height:var(--s,20px);border-radius:50%;
+    background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95),rgba(190,240,235,.35) 45%,rgba(59,176,164,.25));
+    border:1.5px solid rgba(255,255,255,.7);box-shadow:0 4px 10px rgba(8,63,68,.15)}
+  .s3-bottle{position:relative;width:38px;height:78px;border-radius:9px 9px 7px 7px;background:linear-gradient(90deg,#ff8a5c,#ff9d75 45%,#e26a3d);box-shadow:0 8px 8px rgba(8,63,68,.25)}
+  .s3-bottle::before{content:"";position:absolute;left:10px;top:-13px;width:18px;height:14px;border-radius:4px 4px 0 0;background:#0E6369}
+  .s3-bottle::after{content:"FRESH";position:absolute;left:4px;right:4px;top:28px;height:24px;border-radius:5px;background:#fff;color:#0E6369;font:800 8px/24px var(--fh);text-align:center;letter-spacing:.04em}
+
+  html[data-theme="dark"] .s3-glow{background:radial-gradient(circle at 50% 45%,rgba(59,176,164,.28),rgba(59,176,164,0) 68%)}
+  html[data-theme="dark"] .s3-shadow{background:radial-gradient(ellipse,rgba(0,0,0,.6),rgba(0,0,0,0) 70%)}
+</style>
+</head>
+<body data-page="home">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- UPDATED NAVBAR -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html" class="is-active">Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+                   </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero"><div class="wrap hero-grid"><div>
+<h1>Laundry day, off your day.</h1>
+<p class="lead">Schedule a pickup, and we wash, dry clean or press your clothes and linens to their care label, then deliver them back to your door.</p>
+<div class="cta-row"><a class="btn" href="services.html">Browse services</a><a class="btn btn-ghost" href="book.html">Book a pickup</a></div>
+<ul class="hero-facts"><li><span data-icon="check"></span>Free pickup &amp; delivery</li><li><span data-icon="check"></span>Cleaned to the care label</li><li><span data-icon="check"></span>Order tracking, start to finish</li></ul>
+</div>
+
+<div class="scene3d" id="scene3d" aria-hidden="true">
+  <div class="s3-stage" id="s3Stage">
+    <div class="s3-glow"></div>
+    <div class="s3-shadow"></div>
+    <div class="s3-rot" id="s3Rot"><div class="s3-sway">
+      <div class="s3-machine">
+        <div class="s3-face s3-back"></div><div class="s3-face s3-left"></div><div class="s3-face s3-right"></div>
+        <div class="s3-face s3-top"></div><div class="s3-face s3-bottom"></div>
+        <div class="s3-face s3-front">
+          <div class="s3-panel"><span class="s3-dial"></span><span class="s3-disp">WASH</span><span class="s3-dial"></span></div>
+          <div class="s3-door"><div class="s3-glass"><div class="s3-water"></div><div class="s3-drum"><i></i><i></i><i></i><i></i></div><div class="s3-glare"></div></div></div>
+          <div class="s3-brand">FOLD<b>&amp;</b>FRESH</div>
+        </div>
+      </div>
+
+      <div class="s3-item" style="--x:-215px;--y:-118px;--z:120px"><div class="s3-bob" style="--t:4.2s">
+        <svg viewBox="0 0 100 100" style="--s:92px"><path d="M30 10 L8 28 L21 44 L30 37 L30 90 L70 90 L70 37 L79 44 L92 28 L70 10 Q50 26 30 10Z" fill="#ff8a5c" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M30 10Q50 26 70 10" fill="none" stroke="#e26a3d" stroke-width="3"/></svg></div></div>
+
+      <div class="s3-item" style="--x:140px;--y:58px;--z:135px"><div class="s3-bob" style="--t:3.6s;--d:-1s">
+        <svg viewBox="0 0 100 100" style="--s:70px"><path d="M36 6h28v42l22 20a15 15 0 0 1-10 26H40a15 15 0 0 1-15-15V52Z" fill="#3BB0A4" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M36 20h28" stroke="#fff" stroke-width="5"/><path d="M36 32h28" stroke="#fff" stroke-width="5"/></svg></div></div>
+
+      <div class="s3-item" style="--x:132px;--y:-150px;--z:70px"><div class="s3-bob" style="--t:5s;--d:-2s"><div class="s3-bottle"></div></div></div>
+
+      <div class="s3-item" style="--x:-190px;--y:60px;--z:60px"><div class="s3-bob" style="--t:3.2s"><div class="s3-bub" style="--s:34px"></div></div></div>
+      <div class="s3-item" style="--x:-140px;--y:-10px;--z:150px"><div class="s3-bob" style="--t:2.8s;--d:-1s"><div class="s3-bub" style="--s:20px"></div></div></div>
+      <div class="s3-item" style="--x:-60px;--y:-185px;--z:100px"><div class="s3-bob" style="--t:3.9s;--d:-.5s"><div class="s3-bub" style="--s:26px"></div></div></div>
+      <div class="s3-item" style="--x:70px;--y:-175px;--z:-40px"><div class="s3-bob" style="--t:3.4s;--d:-2s"><div class="s3-bub" style="--s:16px"></div></div></div>
+      <div class="s3-item" style="--x:190px;--y:-40px;--z:40px"><div class="s3-bob" style="--t:4.4s;--d:-1.5s"><div class="s3-bub" style="--s:30px"></div></div></div>
+      <div class="s3-item" style="--x:60px;--y:165px;--z:150px"><div class="s3-bob" style="--t:3s"><div class="s3-bub" style="--s:22px"></div></div></div>
+      <div class="s3-item" style="--x:-120px;--y:140px;--z:110px"><div class="s3-bob" style="--t:3.7s;--d:-1s"><div class="s3-bub" style="--s:14px"></div></div></div>
+      <div class="s3-item" style="--x:-215px;--y:-10px;--z:-30px"><div class="s3-bob" style="--t:4.8s;--d:-.7s"><div class="s3-bub" style="--s:18px"></div></div></div>
+    </div></div>
+  </div>
+</div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+<img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1000&q=70" alt="Fresh clean folded laundry" style="border:1.5px solid var(--line);border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%">
+<div><h2>A laundry service built around your schedule</h2>
+<p class="lead">Fold & Fresh picks up, cleans and delivers your laundry and dry cleaning on a window that works for you.</p>
+<p>We started because good laundry service should not mean an afternoon lost at a drop-off counter. Every order is sorted, cleaned to its care label, checked by our quality team, and tracked from pickup to delivery.</p>
+<a class="link" href="about.html">Meet the team</a></div></div></section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything for clean clothes and linens</h2>
+      <p class="lead">From everyday laundry to garments that need a gentler hand.</p>
+    </div>
+
+    <!-- 3 TOP / 3 BOTTOM SERVICES GRID -->
+    <div class="services-grid-3x2">
+      <a class="row-item" href="services.html?cat=everyday">
+        <span class="ico-wrap" data-icon="washer"></span>
+        <div>
+          <h3>Regular wash &amp; fold</h3>
+          <p>Everyday clothes sorted, washed and folded, priced per kilogram.</p>
+        </div>
+      </a>
+
+      <a class="row-item" href="services.html?cat=everyday">
+        <span class="ico-wrap" data-icon="iron"></span>
+        <div>
+          <h3>Ironing &amp; pressing</h3>
+          <p>Crisp shirts and dresses, hand-pressed or steamed.</p>
+        </div>
+      </a>
+
+      <a class="row-item" href="services.html?cat=dryclean">
+        <span class="ico-wrap" data-icon="hanger"></span>
+        <div>
+          <h3>Dry cleaning</h3>
+          <p>Solvent-cleaned suits, coats and delicate fabrics.</p>
+        </div>
+      </a>
+
+      <a class="row-item" href="services.html?cat=specialty">
+        <span class="ico-wrap" data-icon="droplet"></span>
+        <div>
+          <h3>Stain removal</h3>
+          <p>Targeted treatment for stubborn marks.</p>
+        </div>
+      </a>
+
+      <a class="row-item" href="services.html?cat=everyday">
+        <span class="ico-wrap" data-icon="linen"></span>
+        <div>
+          <h3>Household linens</h3>
+          <p>Bedsheets, towels and tablecloths, washed hot and folded flat.</p>
+        </div>
+      </a>
+
+      <a class="row-item" href="services.html?cat=specialty">
+        <span class="ico-wrap" data-icon="shoe"></span>
+        <div>
+          <h3>Shoe cleaning</h3>
+          <p>Hand-cleaned uppers, soles and laces.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section"><div class="wrap"><div class="section-head"><h2>How it works</h2></div><ol class="steps">
+<li><h3>Book &amp; schedule</h3><p>Choose your services and pick a pickup window.</p></li>
+<li><h3>We collect</h3><p>A driver collects your bag at your door.</p></li>
+<li><h3>Clean &amp; check</h3><p>Cleaned to the care label and checked by our team.</p></li>
+<li><h3>Delivered back</h3><p>Folded or hung, delivered in your chosen window.</p></li></ol></div></section>
+
+<section class="section alt"><div class="wrap"><div class="section-head"><h2>Just added</h2><p class="lead">Popular services this month.</p></div><div class="svc-grid" id="featured"></div><p style="margin-top:2rem"><a class="btn btn-ghost" href="services.html">See all services</a></p></div></section>
+
+<section class="section dark"><div class="wrap"><div class="section-head"><h2>Why people choose Fold &amp; Fresh</h2></div>
+<div class="grid g4">
+<div class="benefit"><h3>Care-label cleaning</h3><p>Every item is cleaned according to its own label, not a one-size wash.</p></div>
+<div class="benefit"><h3>Real order tracking</h3><p>Follow your order from pickup to delivery, stage by stage.</p></div>
+<div class="benefit"><h3>Quality checked</h3><p>Every order is checked before it leaves our facility.</p></div>
+<div class="benefit"><h3>Fair, itemised pricing</h3><p>See exactly what each service costs before you book.</p></div>
+</div></div></section>
+
+<section class="section"><div class="wrap"><div class="section-head"><h2>What our customers say</h2></div><div class="grid g3" id="quotes"></div>
+<div class="logos" aria-label="Groups that use Fold and Fresh"><span>Maple Coworking</span><span>Riverside Rentals</span><span>Harbor Gym</span><span>Northgate Salon</span></div></div></section>
+<section class="cta-band"><div class="wrap"><h2>Ready for a laundry-free evening?</h2><div class="cta-row" style="margin:0"><a class="btn btn-dark" href="book.html">Book a pickup</a><a class="btn btn-ghost" href="services.html" style="border-color:#fff;color:#fff">Browse services</a></div></div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+
+<script>
+/* Service card slider: one card at a time, seamless loop, pauses on hover/focus */
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('featured');
+  if (!track || track.children.length < 2) return;
+
+  const viewport = document.createElement('div');
+  viewport.className = 'ff-viewport';
+  track.parentNode.insertBefore(viewport, track);
+  viewport.appendChild(track);
+
+  // Home-only photos (different from the Services page and the blog)
+  [...track.children].forEach(card => {
+    const id = card.querySelector('[data-add]')?.dataset.add, img = card.querySelector('img');
+    if (img && id && typeof HOME_IMG !== 'undefined' && HOME_IMG[id]) img.src = U(HOME_IMG[id], 700);
+  });
+
+  const originals = [...track.children];
+  const n = originals.length;
+  originals.forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden','true'); k.querySelectorAll('a,button').forEach(x => x.tabIndex = -1); track.appendChild(k); });
+
+  const controls = document.createElement('div');
+  controls.className = 'ff-controls';
+  controls.innerHTML = '<button type="button" aria-label="Previous service"><span>&#8592;</span></button><button type="button" aria-label="Next service"><span>&#8594;</span></button>';
+  viewport.after(controls);
+  const [prevBtn, nextBtn] = controls.querySelectorAll('button');
+
+  let i = 0, timer = null, busy = false;
+  const dirSign = () => document.documentElement.dir === 'rtl' ? 1 : -1;
+  const stepPx = () => {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return track.children[0].getBoundingClientRect().width + gap;
+  };
+  const go = (animate = true) => {
+    viewport.classList.toggle('no-anim', !animate);
+    track.style.transform = `translateX(${dirSign() * i * stepPx()}px)`;
+  };
+  const next = () => {
+    if (busy) return; busy = true; i++; go();
+    if (i >= n) setTimeout(() => { i = 0; go(false); busy = false; }, 650);
+    else setTimeout(() => busy = false, 650);
+  };
+  const prev = () => {
+    if (busy) return; busy = true;
+    if (i === 0) { i = n; go(false); void track.offsetWidth; }
+    requestAnimationFrame(() => { i--; go(); setTimeout(() => busy = false, 650); });
+  };
+
+    const start = () => { if (!timer) timer = setInterval(next, 3000); };
+  const stop  = () => { clearInterval(timer); timer = null; };
+
+  nextBtn.addEventListener('click', () => { stop(); next(); start(); });
+  prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
+  [viewport, controls].forEach(el => {
+    el.addEventListener('mouseenter', stop);
+    el.addEventListener('mouseleave', start);
+    el.addEventListener('focusin', stop);
+    el.addEventListener('focusout', start);
+  });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  window.addEventListener('resize', () => go(false));
+  new MutationObserver(() => go(false)).observe(document.documentElement, {attributes:true, attributeFilter:['dir']});
+
+  go(false); start();
+});
+</script>
+
+<script>
+/* 3D laundry scene: scale to fit + tilt with mouse / touch */
+document.addEventListener('DOMContentLoaded', () => {
+  const box = document.getElementById('scene3d'), stage = document.getElementById('s3Stage'), rot = document.getElementById('s3Rot');
+  if (!box) return;
+  const fit = () => stage.style.setProperty('--sc', box.clientWidth / 420);
+  fit(); window.addEventListener('resize', fit);
+  const hero = box.closest('.hero') || document;
+  const tilt = (cx, cy) => {
+    const r = box.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, (cx - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+    const y = Math.max(-1, Math.min(1, (cy - (r.top + r.height / 2)) / (window.innerHeight / 2)));
+    rot.style.setProperty('--ty', (x * 22) + 'deg');
+    rot.style.setProperty('--tx', (-y * 10) + 'deg');
+  };
+  hero.addEventListener('pointermove', e => tilt(e.clientX, e.clientY));
+  hero.addEventListener('pointerleave', () => { rot.style.setProperty('--ty', '0deg'); rot.style.setProperty('--tx', '0deg'); });
+});
+</script>
+</body>
+</html>

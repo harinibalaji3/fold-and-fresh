@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in or join | Fold & Fresh</title>
+<meta name="description" content="Sign in or create a Fold & Fresh account to track orders and manage bookings.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"></div>
+<main id="main">
+
+<div class="wrap"><div class="auth panel"><h1 id="authTitle" style="font-size:2.1rem">Welcome back</h1>
+<div class="tabs" role="tablist"><button role="tab" data-m="in" aria-selected="true">Sign in</button><button role="tab" data-m="up" aria-selected="false">Join</button></div>
+<form id="authForm" novalidate>
+<div class="field" data-up hidden><label for="fname">Full name</label><input id="fname" autocomplete="name" required disabled data-msg="Please enter your name."><div class="err"></div></div>
+<div class="field"><label for="email">Email</label><input id="email" type="email" required autocomplete="email" data-msg="Enter a valid email address."><div class="err"></div></div>
+<div class="field"><label for="pw">Password</label><input id="pw" type="password" required minlength="6" autocomplete="current-password" data-msg="Use at least 6 characters."><div class="err"></div></div>
+<div class="field" data-up hidden><label for="pw2">Confirm password</label><input id="pw2" type="password" required disabled autocomplete="new-password"><div class="err"></div></div>
+<div class="field" data-up hidden><label style="display:flex;gap:.6rem;font:500 1rem var(--fb);color:var(--ink)"><input type="checkbox" required disabled data-msg="Please accept the terms to continue."> I accept the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</label><div class="err"></div></div>
+<button class="btn" style="width:100%" type="submit" id="authGo">Sign in</button></form>
+<p class="muted small" style="margin:1rem 0 0">Demo store: accounts are kept only in this browser. Use an email starting with "admin" to see the admin dashboard.</p></div></div>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

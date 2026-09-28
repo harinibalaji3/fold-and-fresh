@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | Fold & Fresh</title>
+<meta name="description" content="Get in touch with Fold & Fresh. Address, phone, email, delivery areas, payment methods and a contact form.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- UPDATED NAVBAR -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html"  class="is-active">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+            
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / Contact</div><h1>Contact us</h1><p class="lead">Questions about an order, a service or a business plan. We reply within one business day.</p></div></section>
+<section class="section"><div class="wrap split" style="align-items:start">
+<div><h2 style="font-size:1.6rem">Get in touch</h2>
+<ul class="contact-list">
+<li><span class="ico-wrap" data-icon="pin"></span><div><b>Address</b><br>48 Harbor Lane, Riverside District</div></li>
+<li><span class="ico-wrap" data-icon="phone"></span><div><b>Phone</b><br><a href="tel:+15550198765">+1 (555) 019-8765</a></div></li>
+<li><span class="ico-wrap" data-icon="mail"></span><div><b>Email</b><br><a href="mailto:hello@foldandfresh.example">hello@foldandfresh.example</a></div></li>
+<li><span class="ico-wrap" data-icon="share"></span><div><b>Social</b><br><a href="#">Instagram</a>, <a href="#">Facebook</a>, <a href="#">TikTok</a></div></li></ul>
+<h3>Office hours</h3>
+<div class="tbl-wrap"><table class="tbl wide"><tbody><tr><th scope="row">Monday to Friday</th><td>8:00 to 20:00</td></tr><tr><th scope="row">Saturday</th><td>8:00 to 18:00</td></tr><tr><th scope="row">Sunday</th><td>9:00 to 17:00</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Payment methods</h3><div class="pay-grid" id="payGrid"></div></div>
+<div class="panel"><h2 style="font-size:1.6rem">Send a message</h2>
+<div class="notice" id="sent" hidden tabindex="-1" role="status"><b>Thank you.</b> Your message is in. We will reply within one business day.</div>
+<form id="contactForm" novalidate><div class="fgrid">
+<div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" data-msg="Please enter your name."><div class="err"></div></div>
+<div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" data-msg="Enter a valid email address."><div class="err"></div></div>
+<div class="field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9 +\-]{7,20}" data-msg="Use 7 to 20 digits, spaces, + or -."><div class="err"></div></div>
+<div class="field"><label for="subject">Subject</label><input id="subject" name="subject" required data-msg="Tell us what this is about."><div class="err"></div></div></div>
+<div class="field"><label for="message">Message</label><textarea id="message" name="message" required minlength="10" data-msg="Please write at least 10 characters."></textarea><div class="err"></div></div>
+<button class="btn" type="submit">Send message</button></form></div></div></section>
+<section class="section alt"><div class="wrap"><h2 style="font-size:1.6rem">Delivery areas</h2><p class="lead">Same-day service in our core zones; next-day elsewhere in the city.</p><div class="area-grid" id="areaGrid"></div></div></section>
+<section class="section"><div class="wrap"><h2 style="font-size:1.6rem">Find our facility</h2>
+<!-- Replace the src below with your own map embed (openstreetmap.org > Share > HTML) -->
+<iframe class="map" title="Map showing the Fold and Fresh facility location" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=8.4900%2C50.5540%2C8.5100%2C50.5660&amp;layer=mapnik&amp;marker=50.5600%2C8.5000"></iframe></div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

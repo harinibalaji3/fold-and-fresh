@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Us | Fold & Fresh</title>
+<meta name="description" content="The story, mission and team behind Fold & Fresh doorstep laundry.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* --- BASE & HEADER REUSE STYLES --- */
+  :root {
+    --header-bg: linear-gradient(110deg,#0E6369 0%,#3BB0A4 100%);
+    --text-main: #14212b;
+    --text-muted: #52606d;
+    --accent-color: #0E6369;
+    --border-color: #e4e7eb;
+    --dropdown-bg: #ffffff;
+    --drawer-bg: #ffffff;
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --card-bg: #ffffff;
+    --contrast: #ff8a5c;
+  }
+
+  html[data-theme="dark"] {
+    --header-bg: linear-gradient(110deg,#082f33 0%,#0E6369 100%);
+    --text-main: #f5efe6;
+    --text-muted: #9aa5b1;
+    --accent-color: #3BB0A4;
+    --border-color: #2a363f;
+    --dropdown-bg: #1a232a;
+    --drawer-bg: #12181b;
+    --hover-bg: rgba(255, 255, 255, 0.08);
+    --card-bg: #1a232a;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--header-bg);
+    background-size: 220% 220%;
+    animation: ffHeaderShift 14s ease infinite;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    z-index: 1000;
+  }
+  @keyframes ffHeaderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .site-header .logo,.site-header .logo-text,.site-header .nav-toggle span{color:#fff}
+  .site-header .nav-links a{color:rgba(255,255,255,.86)}
+  .site-header .nav-links a:hover,.site-header .nav-links a.is-active{color:var(--contrast)}
+  .site-header .icon-btn,.site-header .pill-toggle-btn{border-color:rgba(255,255,255,.4);color:#fff}
+  .site-header .icon-btn:hover,.site-header .pill-toggle-btn:hover{background:rgba(255,255,255,.18)}
+  .site-header .nav-toggle span{background-color:#fff}
+  @media(prefers-reduced-motion:reduce){.site-header{animation:none}}
+
+  .header-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: var(--text-main); }
+  .nav-container { display: flex; align-items: center; }
+  .nav-menu-drawer { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover, .nav-links a.is-active { color: var(--accent-color); }
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 0.45rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle .moon-icon { display: none; }
+  html[data-theme="dark"] .theme-toggle .sun-icon { display: none; }
+  html[data-theme="dark"] .theme-toggle .moon-icon { display: block; }
+
+  .pill-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .profile-dropdown-wrapper { position: relative; display: inline-block; }
+  .profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 220px;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    display: none;
+    flex-direction: column;
+    z-index: 1005;
+  }
+  html[dir="rtl"] .profile-dropdown-menu { right: auto; left: 0; }
+  .profile-dropdown-menu.is-open { display: flex; }
+  .dropdown-header { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-color); }
+  .dropdown-header h4 { margin: 0; font-size: 0.95rem; color: var(--text-main); }
+  .dropdown-header p { margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--text-muted); }
+  .dropdown-links { list-style: none; margin: 0; padding: 0.4rem 0; }
+  .dropdown-links li a { display: block; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.85rem; color: var(--text-main); }
+  .dropdown-links li a:hover { background-color: var(--hover-bg); }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background-color: var(--text-main); }
+
+  @media (max-width: 868px) {
+    .nav-toggle { display: flex; }
+    .nav-menu-drawer {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 280px;
+      height: calc(100vh - 70px);
+      background-color: var(--drawer-bg);
+      border-left: 1px solid var(--border-color);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1.5rem;
+      transition: right 0.3s ease;
+    }
+    .nav-menu-drawer.is-open { right: 0; }
+    .nav-links { flex-direction: column; align-items: flex-start; width: 100%; }
+    .header-actions { width: 100%; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    .profile-dropdown-menu { position: static; width: 100%; box-shadow: none; }
+  }
+
+  /* --- TEAM & TESTIMONIAL CARD STYLES --- */
+  .grid.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .grid.g2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  .team-card, .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  }
+
+  .team-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-card h3 { margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main); }
+  .team-card .role { font-size: 0.85rem; font-weight: 600; color: var(--accent-color); margin-bottom: 0.5rem; }
+  .team-card p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+  .testimonial-card blockquote { margin: 0 0 1rem 0; font-style: italic; color: var(--text-main); }
+  .testimonial-card cite { font-style: normal; font-weight: 600; color: var(--accent-color); font-size: 0.9rem; }
+
+  @media (max-width: 992px) {
+    .grid.g4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid.g4, .grid.g2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="about">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- SAME SITE HEADER -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html" class="is-active">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / About</div><h1>About Fold &amp; Fresh</h1><p class="lead">We are a laundry service built by people who got tired of ruined sweaters and lost turnaround times.</p></div></section>
+
+<!-- 1. COMPANY OVERVIEW -->
+<section class="section"><div class="wrap split"><div><h2>Company overview</h2><p class="lead">Fold &amp; Fresh picks up, cleans and delivers laundry and dry cleaning across the city.</p><p>We started after one too many garments came back from a corner-store cleaner shrunk, faded or simply late. Now we run our own facility, train our own team, and check every order before it goes back out the door.</p><p>Our name is simple: fold the laundry, keep it fresh.</p></div>
+<img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1000&q=70" alt="Neatly folded laundry stacked in a basket" style="border:1.5px solid var(--border-color);border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%"></div></section>
+
+<!-- 2. MISSION & VISION -->
+<section class="section alt"><div class="wrap grid g2">
+<div class="panel" style="background:var(--card-bg);padding:2rem;border-radius:12px;border:1px solid var(--border-color);"><h2 style="font-size:1.7rem;margin-top:0;">Our mission</h2><p style="margin:0">Give people their time back by making laundry and dry cleaning effortless, reliable and honestly priced.</p></div>
+<div class="panel" style="background:var(--card-bg);padding:2rem;border-radius:12px;border:1px solid var(--border-color);"><h2 style="font-size:1.7rem;margin-top:0;">Our vision</h2><p style="margin:0">A city where nobody’s evening or weekend is spent standing over a washing machine.</p></div></div></section>
+
+<!-- 3. JOURNEY / HISTORY (Horizontal Cards Grid) -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head text-center">
+      <h2>Our journey</h2>
+      <p class="lead">From a single route van to a full-scale commercial fleet.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2.5rem;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative;">
+        <span style="font-size: 2rem; font-weight: 800; color: var(--accent-color); display: block; margin-bottom: 0.5rem;">2019</span>
+        <h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0;">The First Route</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Fold &amp; Fresh launches with one van and a rented facility corner.</p>
+      </div>
+
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative;">
+        <span style="font-size: 2rem; font-weight: 800; color: var(--accent-color); display: block; margin-bottom: 0.5rem;">2021</span>
+        <h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0;">Flagship Facility</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Our own automated cleaning facility opens with in-house quality controls.</p>
+      </div>
+
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative;">
+        <span style="font-size: 2rem; font-weight: 800; color: var(--accent-color); display: block; margin-bottom: 0.5rem;">2023</span>
+        <h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0;">Live Tracking</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Order tracking launches, letting customers follow garment stages live.</p>
+      </div>
+
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative;">
+        <span style="font-size: 2rem; font-weight: 800; color: var(--accent-color); display: block; margin-bottom: 0.5rem;">2025</span>
+        <h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0;">B2B Expansion</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Commercial linen plans launch for boutique hotels, gyms, and Airbnb hosts.</p>
+      </div>
+
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative;">
+        <span style="font-size: 2rem; font-weight: 800; color: var(--accent-color); display: block; margin-bottom: 0.5rem;">2026</span>
+        <h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0;">City Coverage</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Now covering eight city zones with express same-day turnaround.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. TEAM MEMBERS (DYNAMIC WITH STATIC HTML FALLBACK) -->
+<section class="section alt"><div class="wrap"><div class="section-head"><h2>The team</h2></div>
+<div class="grid g4" id="team">
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=70" alt="Sarah Chen">
+    <h3>Sarah Chen</h3>
+    <div class="role">Founder &amp; CEO</div>
+    <p>Former ops manager passionate about building zero-friction local services.</p>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=70" alt="Marcus Vance">
+    <h3>Marcus Vance</h3>
+    <div class="role">Head of Operations</div>
+    <p>Oversees facility quality assurance, thermal sanitization, and staff training.</p>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=70" alt="Elena Rostova">
+    <h3>Elena Rostova</h3>
+    <div class="role">Lead Textile Specialist</div>
+    <p>Expert in fabric care, stain treatment chemistry, and dry-cleaning solvents.</p>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=70" alt="David Park">
+    <h3>David Park</h3>
+    <div class="role">Logistics Coordinator</div>
+    <p>Manages fleet routing, door pickup windows, and driver schedule optimization.</p>
+  </div>
+</div></div></section>
+
+<!-- 5. CLIENT TESTIMONIALS -->
+<section class="section"><div class="wrap"><div class="section-head"><h2>Customer feedback</h2></div>
+<div class="grid g2" id="quotes">
+  <div class="testimonial-card">
+    <blockquote>"The 24-hour turnaround on our dry cleaning is a lifesaver. Everything arrives folded or hung crisply with zero chemical odor."</blockquote>
+    <cite>— Rachel M., Boutique Hotel Owner</cite>
+  </div>
+  <div class="testimonial-card">
+    <blockquote>"Saved me hours of weekend laundry chores. The order tracking app updates me the minute my clothes are washed and out for delivery."</blockquote>
+    <cite>— James T., Regular Subscriber</cite>
+  </div>
+</div></div></section>
+
+<section class="cta-band"><div class="wrap"><h2>Want to talk laundry?</h2><div class="cta-row" style="margin:0"><a class="btn btn-dark" href="contact.html">Contact us</a></div></div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

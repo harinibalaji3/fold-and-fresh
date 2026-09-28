@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Journal | Fold & Fresh</title>
+<meta name="description" content="Garment care guides, laundry tips and stories from Fold & Fresh.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+:root{--bg:#f3f9f7;--panel:#ffffff;--ink:#0e2a2b;--ink2:#4b6664;--teal:#0E6369;--teal-d:#083f44;--aqua:#3BB0A4;--coral:#ff8a5c;--coral-d:#e26a3d;--line:#d7e6e2;--ok:#2f8f5b;--warn:#c96a1f;--bad:#d1493f;--r:14px;--wrap:1180px;--fh:'Plus Jakarta Sans',system-ui,sans-serif;--fb:'Source Sans 3',system-ui,sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.06rem/1.65 var(--fb);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit}
+h1,h2,h3,h4{font-family:var(--fh);line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em;font-weight:800;color:var(--teal-d)}
+h1{font-size:clamp(2.4rem,5.4vw,4.2rem)}h2{font-size:clamp(1.7rem,3.2vw,2.5rem)}h3{font-size:1.22rem}h4{font-size:1.02rem}
+p{margin:0 0 1em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.25rem}
+  /* Breadcrumbs & Header */
+  .page-head { padding: 2.5rem 0 1rem; }
+  .crumbs { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .crumbs a { color: var(--accent-color); text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  .page-head h1 { font-size: 2.5rem; margin: 0 0 0.5rem 0; color: var(--text-main); }
+  .lead { color: var(--text-muted); font-size: 1.1rem; margin: 0; }
+
+  /* Search & Filter Section */
+  .filter-search-container { margin-top: 1.5rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .search-box { position: relative; width: 100%; max-width: 500px; }
+  .search-box input { width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-size: 0.95rem; box-sizing: border-box; }
+  .search-box input:focus { outline: none; border-color: var(--accent-color); }
+  
+  /* Category Chips */
+  .chips { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .chip { background: var(--section-alt-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip.active, .chip:hover { background: var(--accent-color); color: #ffffff; border-color: var(--accent-color); }
+
+  /* Blog Cards Grid */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 1.5rem; }
+  @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+  .blog-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none; color: inherit; }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.06); }
+  .blog-img { width: 100%; height: 200px; object-fit: cover; }
+  .blog-content { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
+  .blog-cat { font-size: 0.75rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+  .blog-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 0.6rem 0; line-height: 1.35; }
+  .blog-excerpt { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 1.25rem 0; flex-grow: 1; }
+  .blog-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); }
+  .blog-author { font-weight: 600; color: var(--text-main); }
+</style>
+</head>
+<body data-page="blog">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- NAVBAR HEADER -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html" class="is-active">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- PAGE HEADER SECTION -->
+  <section class="page-head">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a> / Journal</div>
+      <h1>The journal</h1>
+      <p class="lead">Care guides, stain tips and stories from the laundry floor.</p>
+    </div>
+  </section>
+
+  <!-- SEARCH & FILTER SECTION -->
+  <div class="wrap" style="padding-bottom: 4rem;">
+    <div class="filter-search-container">
+      <div class="search-box">
+        <input id="q" type="search" placeholder="Search articles by title or topic..." aria-label="Search articles">
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Categories"></div>
+    </div>
+
+    <!-- BLOG POSTS LIST AREA -->
+    <div id="posts" class="blog-grid" aria-live="polite"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const postsContainer = document.getElementById("posts");
+    const chipsContainer = document.getElementById("chips");
+    const searchInput = document.getElementById("q");
+
+    // Retrieve POSTS array from data.js
+    const postsData = (typeof POSTS !== "undefined") ? POSTS : [];
+
+    let activeCategory = "all";
+    let searchQuery = "";
+
+    // 1. Extract Categories Dynamic from POSTS
+    function renderChips() {
+      // Gather unique category names directly from POSTS data
+      const categorySet = new Set(postsData.map(p => p.cat).filter(Boolean));
+      const categories = [{ id: "all", name: "All Topics" }];
+      
+      categorySet.forEach(catName => {
+        categories.push({ id: catName.toLowerCase(), name: catName });
+      });
+
+      chipsContainer.innerHTML = categories.map(cat => `
+        <button class="chip ${cat.id === activeCategory ? 'active' : ''}" data-cat="${cat.id}">
+          ${cat.name}
+        </button>
+      `).join('');
+
+      chipsContainer.querySelectorAll('.chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.dataset.cat;
+          renderChips();
+          renderPosts();
+        });
+      });
+    }
+
+    // 2. Render Blog Posts Grid
+    function renderPosts() {
+      if (!postsData || postsData.length === 0) {
+        postsContainer.innerHTML = `<p style="grid-column: 1/-1; color: var(--text-muted);">No blog posts found.</p>`;
+        return;
+      }
+
+      const filtered = postsData.filter(post => {
+        const postCatLower = (post.cat || "").toLowerCase();
+        const matchesCategory = activeCategory === "all" || postCatLower === activeCategory;
+        
+        const titleText = (post.title || "").toLowerCase();
+        const excerptText = (post.excerpt || "").toLowerCase();
+        const matchesSearch = titleText.includes(searchQuery) || excerptText.includes(searchQuery);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        postsContainer.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 3rem 0; color: var(--text-muted);">
+            <h3>No articles found</h3>
+            <p>Try searching for a different keyword or category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      postsContainer.innerHTML = filtered.map(post => {
+        // Resolve Unsplash URL function U() defined in data.js
+        const imageUrl = (typeof U === "function" && post.img) ? U(post.img) : post.img;
+
+        return `
+          <a href="blog-detail.html?id=${post.id}" class="blog-card">
+            <img src="${imageUrl}" alt="${post.title}" class="blog-img" loading="lazy">
+            <div class="blog-content">
+              <span class="blog-cat">${post.cat}</span>
+              <h3 class="blog-title">${post.title}</h3>
+              <p class="blog-excerpt">${post.excerpt}</p>
+              <div class="blog-meta">
+                <span class="blog-author">${post.author || "FoldFresh Team"}</span>
+                <time datetime="${post.date}">${post.date}</time>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // 3. Search Bar Handler
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        renderPosts();
+      });
+    }
+
+    // Initial Execution
+    renderChips();
+    renderPosts();
+  });
+</script>
+</body>
+</html>

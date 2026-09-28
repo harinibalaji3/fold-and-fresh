@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book a pickup | Fold & Fresh</title>
+<meta name="description" content="Book a free doorstep pickup: choose your services, pick a collection and delivery window, and we take care of the rest.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .book-cols{display:grid;grid-template-columns:1fr 380px;gap:2.4rem;align-items:start;padding:2.2rem 0 4rem}
+  @media(max-width:950px){.book-cols{grid-template-columns:1fr}}
+  .book-side{position:sticky;top:90px}
+  @media(max-width:950px){.book-side{position:static}}
+  .pick-list{display:grid;gap:.6rem}
+  .pick{display:flex;align-items:center;gap:.9rem;padding:.7rem .9rem;border:1.5px solid var(--line);border-radius:12px;background:var(--panel)}
+  .pick img{width:54px;height:54px;border-radius:10px;object-fit:cover;flex:none}
+  .pick .t{flex:1;min-width:0}.pick .t b{display:block;font:700 1rem var(--fh);color:var(--teal-d)}
+  .pick .t span{font-size:.9rem;color:var(--ink2)}
+  .steps-h{display:flex;align-items:center;gap:.6rem;margin:0 0 .3rem}
+  .steps-h i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font:800 .95rem var(--fh);flex:none}
+  .book-perks{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.4rem;font-size:.95rem;color:var(--ink2)}
+  .book-perks li{display:flex;gap:.5rem;align-items:center}.book-perks .ico{color:var(--aqua)}
+  #thanks{max-width:760px;margin:2.5rem auto 4rem}
+  select{appearance:auto}
+</style>
+</head>
+<body data-page="book">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- UPDATED NAVBAR -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html" >Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+                   </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / Book a pickup</div><h1>Book a pickup</h1><p class="lead">Choose your services, pick a window that suits you, and we collect from your door. Free pickup &amp; delivery.</p></div></section>
+
+<div class="wrap">
+<div class="panel" id="thanks" hidden tabindex="-1" role="status"></div>
+
+<div class="book-cols">
+<form id="bookForm" novalidate>
+
+  <fieldset>
+    <legend><span class="steps-h"><i>1</i> Choose services</span></legend>
+    <div class="pick-list" id="svcPick"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="steps-h"><i>2</i> Your details</span></legend>
+    <div class="fgrid">
+      <div class="field"><label for="bk-name">Full name</label><input id="bk-name" name="name" required autocomplete="name" data-msg="Please enter your name."><div class="err"></div></div>
+      <div class="field"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" required autocomplete="email" data-msg="Enter a valid email address."><div class="err"></div></div>
+      <div class="field"><label for="bk-phone">Phone</label><input id="bk-phone" name="phone" type="tel" required autocomplete="tel" pattern="[0-9 +\-]{7,20}" data-msg="Use 7 to 20 digits, spaces, + or -."><div class="err"></div></div>
+      <div class="field"><label for="bk-address">Pickup address</label><input id="bk-address" name="address" required autocomplete="street-address" data-msg="Please enter the pickup address."><div class="err"></div></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="steps-h"><i>3</i> Pickup &amp; delivery</span></legend>
+    <div class="fgrid">
+      <div class="field"><label for="pk-date">Pickup date</label><input id="pk-date" name="pk-date" type="date" required data-msg="Choose a pickup date."><div class="err"></div></div>
+      <div class="field"><label for="pk-slot">Pickup window</label><select id="pk-slot" name="pk-slot" required data-msg="Choose a pickup window."><option value="">Select a window</option><option>8:00 - 11:00</option><option>11:00 - 14:00</option><option>14:00 - 17:00</option><option>17:00 - 20:00</option></select><div class="err"></div></div>
+      <div class="field"><label for="dl-date">Delivery date</label><input id="dl-date" name="dl-date" type="date" required data-msg="Choose a delivery date."><div class="err"></div></div>
+      <div class="field"><label for="dl-slot">Delivery window</label><select id="dl-slot" name="dl-slot" required data-msg="Choose a delivery window."><option value="">Select a window</option><option>8:00 - 11:00</option><option>11:00 - 14:00</option><option>14:00 - 17:00</option><option>17:00 - 20:00</option></select><div class="err"></div></div>
+    </div>
+    <div class="field" style="margin-bottom:0"><label for="bk-notes">Notes for our team (optional)</label><textarea id="bk-notes" name="notes" placeholder="Gate code, delicate items, stains to point out..."></textarea></div>
+  </fieldset>
+</form>
+
+<aside class="book-side">
+  <div class="panel" id="bkSummaryCard">
+    <h2 style="font-size:1.35rem">Your booking</h2>
+    <div class="toggle" id="modeToggle" role="group" aria-label="Turnaround">
+      <button type="button" data-m="standard" aria-pressed="true">Standard</button>
+      <button type="button" data-m="express" aria-pressed="false">Express</button>
+    </div>
+    <div id="bkItems"></div>
+    <div class="sum" style="margin-top:1rem"><span>Estimated total</span><span id="bkSum">$0</span></div>
+    <button class="btn" style="width:100%" type="submit" form="bookForm" id="bkSubmit" disabled>Confirm booking</button>
+    <p class="small muted" style="margin:.8rem 0 0">Final price is confirmed after weigh-in for per-kg services.</p>
+    <ul class="book-perks">
+      <li><span data-icon="check"></span>Free pickup &amp; delivery</li>
+      <li><span data-icon="check"></span>Cleaned to the care label</li>
+      <li><span data-icon="check"></span>Track your order at every stage</li>
+    </ul>
+  </div>
+</aside>
+</div>
+</div>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+<script>
+  /* Service picker: tap Add to put services in the booking */
+  document.addEventListener('DOMContentLoaded', () => {
+    const box = document.getElementById('svcPick');
+    if (!box || typeof SERVICES === 'undefined') return;
+    box.innerHTML = SERVICES.map(s => `<div class="pick"><img loading="lazy" src="${U(HOME_IMG && HOME_IMG[s.id] ? HOME_IMG[s.id] : s.img, 200)}" alt=""><div class="t"><b>${esc(s.name)}</b><span>${money(s.price)} ${UNIT_LABEL[s.unit]} &middot; ${esc(s.turnaround.split(',')[0].split(' if')[0])}</span></div><button type="button" class="btn btn-sm" data-add="${s.id}">Add</button></div>`).join('');
+    const pre = new URLSearchParams(location.search).get('service');
+    if (pre && byId(pre) && !getBasket()[pre]) addToBasket(pre);
+  });
+</script>
+</body>
+</html>

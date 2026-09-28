@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pageTitle">Service Detail | FoldFresh</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  :root{--bg:#f3f9f7;--panel:#ffffff;--ink:#0e2a2b;--ink2:#4b6664;--teal:#0E6369;--teal-d:#083f44;--aqua:#3BB0A4;--coral:#ff8a5c;--coral-d:#e26a3d;--line:#d7e6e2;--ok:#2f8f5b;--warn:#c96a1f;--bad:#d1493f;--r:14px;--wrap:1180px;--fh:'Plus Jakarta Sans',system-ui,sans-serif;--fb:'Source Sans 3',system-ui,sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.06rem/1.65 var(--fb);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit}
+h1,h2,h3,h4{font-family:var(--fh);line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em;font-weight:800;color:var(--teal-d)}
+h1{font-size:clamp(2.4rem,5.4vw,4.2rem)}h2{font-size:clamp(1.7rem,3.2vw,2.5rem)}h3{font-size:1.22rem}h4{font-size:1.02rem}
+p{margin:0 0 1em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.25rem}
+  .section { padding: 3rem 0; }
+  .section.alt { background-color: var(--section-alt-bg); }
+  .detail-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .detail-hero-img img { width: 100%; height: 360px; object-fit: cover; border-radius: 16px; border: 1px solid var(--border-color); }
+  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  .feature-box { background: var(--card-bg); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); }
+  .workflow-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem; }
+  .step-card { background: var(--card-bg); padding: 1.25rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+  .step-num { width:32px; height:32px; background:var(--accent-color); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 0.75rem; font-weight:bold; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  .plan-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; }
+  .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem 1.25rem; }
+  .cta-band { background: var(--accent-color); color: #fff; padding: 2.5rem; text-align: center; border-radius: 16px; margin: 3rem 0; }
+
+  /* Footer Styling */
+  .site-footer { background: var(--teal-d); color: #bcdcd5; padding: 0 0 2rem; margin-top: 4rem; }
+  .fgrid4 { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 2rem; padding: 3rem 0 2rem; }
+  @media (max-width: 850px) { .fgrid4 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .fgrid4 { grid-template-columns: 1fr; } }
+  .site-footer h4 { color: #fff; margin-bottom: .8rem; margin-top: 0; }
+  .site-footer ul { list-style: none; padding: 0; margin: 0; }
+  .site-footer li { margin-bottom: .4rem; }
+  .site-footer a { text-decoration: none; color: #bcdcd5; transition: color 0.2s; }
+  .site-footer a:hover { color: var(--coral); }
+  .site-footer .logo b { color: #fff; }
+  .site-footer .logo small { color: #9cc4bc; }
+  .nl { display: flex; gap: .4rem; }
+  .nl input { border-color: #155158; background: #0c454b; color: #fff; border: 1px solid #155158; padding: 0.5rem; border-radius: 6px; width: 100%; }
+  .legal { border-top: 1px solid #155158; padding-top: 1.2rem; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem; }
+
+  @media (max-width: 768px) { .detail-hero, .features-grid, .workflow-list, .pricing-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- UPDATED NAVBAR -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html" >Home</a></li>
+          <li><a href="home-niche.html">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html" class="is-active">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- BREADCRUMBS -->
+  <div style="padding-top: 2rem;" class="crumbs">
+    <a href="index.html">Home</a> / <a href="service.html">Services</a> / <span id="crumbTitle">Detail</span>
+  </div>
+
+  <!-- OVERVIEW HERO -->
+  <section class="section">
+    <div class="detail-hero">
+      <div>
+        <span id="svcTag" style="background:rgba(15,76,66,0.1); color:var(--accent-color); padding:0.25rem 0.75rem; border-radius:12px; font-weight:600; font-size:0.8rem;">Tag</span>
+        <h1 id="svcTitle" style="font-size:2.2rem; margin:0.75rem 0 0.5rem;">Loading Service...</h1>
+        <p id="svcPrice" style="font-size:1.25rem; font-weight:700; color:var(--accent-color); margin-bottom:1rem;"></p>
+        <p id="svcDesc" style="color:var(--text-muted); line-height:1.6; font-size:1rem;"></p>
+        <a href="book.html" class="btn" style="background:var(--accent-color); color:#fff; padding:0.85rem 1.75rem; border-radius:25px; text-decoration:none; display:inline-block; margin-top:1.25rem; font-weight:600;">Book This Service</a>
+      </div>
+      <div class="detail-hero-img">
+        <img id="svcImage" src="" alt="Service Image">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section alt" style="border-radius:16px; padding:2rem;">
+    <h2>Key Features &amp; Care Details</h2>
+    <div class="features-grid" id="featuresGrid"></div>
+  </section>
+
+  <!-- WORKFLOW -->
+  <section class="section">
+    <h2>How It Works</h2>
+    <div class="workflow-list" id="workflowGrid"></div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section alt" style="border-radius:16px; padding:2rem;">
+    <h2>Pricing Options</h2>
+    <div class="pricing-grid" id="pricingGrid"></div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list" id="faqGrid"></div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 style="margin:0 0 0.5rem 0; color:#fff;">Ready for Fresh Garments?</h2>
+    <p style="margin:0 0 1.5rem 0; opacity:0.9;">Book a pickup slot and let our team handle the rest.</p>
+    <a href="book.html" style="background:#fff; color:var(--accent-color); padding:0.75rem 1.75rem; border-radius:25px; text-decoration:none; font-weight:700; display:inline-block;">Schedule Pickup</a>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap fgrid4">
+    <div class="footer-col">
+      <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+        <img src="assets/logo.png" alt="Brand Logo" width="32" height="32">
+        <span style="font-size: 1.2rem;"><b>Fold</b><small>Fresh</small></span>
+      </a>
+      <p style="font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.5;">
+        Premium laundry, dry cleaning, and garment care services delivered right to your door.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="book.html">Book Pickup</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="faq.html">FAQs</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Subscribe to get special offers and updates.</p>
+      <form class="nl" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn" style="background: var(--accent-color); color: #fff; border: none; padding: 0.5rem 0.8rem; border-radius: 6px; cursor: pointer;">Join</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap legal">
+    <p>&copy; 2026 FoldFresh. All rights reserved.</p>
+    <div>
+      <a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Get service ID from URL query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceId = urlParams.get('id');
+
+    // 2. Locate service in SERVICES array
+    const data = SERVICES.find(s => s.id === serviceId) || SERVICES[0];
+
+    // 3. Render Hero Content
+    document.title = `${data.name} | FoldFresh`;
+    document.getElementById("crumbTitle").textContent = data.name;
+    document.getElementById("svcTitle").textContent = data.name;
+    document.getElementById("svcTag").textContent = CATS[data.cat] || data.cat;
+    
+    const unitText = UNIT_LABEL[data.unit] || data.unit;
+    document.getElementById("svcPrice").textContent = `$${data.price.toFixed(2)} ${unitText}`;
+    document.getElementById("svcDesc").textContent = data.short;
+    
+    document.getElementById("svcImage").src = U(data.img);
+    document.getElementById("svcImage").alt = data.name;
+
+    // 4. Render Features & Care Details
+    const featuresHTML = data.features.map(f => `
+      <div class="feature-box">
+        <h4 style="margin:0 0 0.4rem; color:var(--text-main);">${f}</h4>
+        <p style="margin:0; color:var(--text-muted); font-size:0.9rem; line-height:1.5;">Quality inspected and handled according to care label requirements.</p>
+      </div>
+    `).join('');
+
+    const careHTML = `
+      <div class="feature-box" style="grid-column: 1 / -1; background: rgba(15,76,66,0.05); border-color: var(--accent-color);">
+        <h4 style="margin:0 0 0.4rem; color:var(--accent-color);">Garment Care Guarantee</h4>
+        <p style="margin:0; color:var(--text-main); font-size:0.92rem; line-height:1.5;">${data.care}</p>
+      </div>
+    `;
+    document.getElementById("featuresGrid").innerHTML = featuresHTML + careHTML;
+
+    // 5. Render Workflow
+    document.getElementById("workflowGrid").innerHTML = PROCESS.map((s, i) => `
+      <div class="step-card">
+        <div class="step-num">${i + 1}</div>
+        <h4 style="margin:0 0 0.4rem; color:var(--text-main);">${s.title}</h4>
+        <p style="margin:0; color:var(--text-muted); font-size:0.85rem; line-height:1.4;">${s.text}</p>
+      </div>
+    `).join('');
+
+    // 6. Render Pricing Options
+    document.getElementById("pricingGrid").innerHTML = `
+      <div class="plan-card">
+        <h3 style="margin:0; color:var(--text-main);">Standard Service</h3>
+        <p style="font-size:1.5rem; font-weight:700; color:var(--accent-color); margin:0.5rem 0 0.25rem 0;">
+          $${data.pricing.standard.toFixed(2)} <span style="font-size:0.9rem; font-weight:normal;">${unitText}</span>
+        </p>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem;">Turnaround: ${data.turnaround}</p>
+        <ul style="padding-left:1.2rem; color:var(--text-muted); line-height:1.8; margin:0;">
+          <li>Standard processing pipeline</li>
+          <li>Care label temperature verification</li>
+          <li>${data.minNote}</li>
+        </ul>
+      </div>
+      
+      <div class="plan-card" style="border-color: var(--accent-color);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="margin:0; color:var(--text-main);">Express Service</h3>
+          <span style="background:var(--accent-color); color:#fff; font-size:0.7rem; padding:0.2rem 0.5rem; border-radius:10px; font-weight:bold;">EXPRESS</span>
+        </div>
+        <p style="font-size:1.5rem; font-weight:700; color:var(--accent-color); margin:0.5rem 0 0.25rem 0;">
+          $${data.pricing.express.toFixed(2)} <span style="font-size:0.9rem; font-weight:normal;">${unitText}</span>
+        </p>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem;">Turnaround: Priority same-day delivery</p>
+        <ul style="padding-left:1.2rem; color:var(--text-muted); line-height:1.8; margin:0;">
+          <li>Priority handling & dedicated processing</li>
+          <li>Same-day return available in core zones</li>
+          <li>${data.minNote}</li>
+        </ul>
+      </div>
+    `;
+
+    // 7. Render FAQs
+    document.getElementById("faqGrid").innerHTML = FAQS.slice(0, 4).map(f => `
+      <div class="faq-item">
+        <h4 style="margin:0 0 0.4rem; color:var(--text-main);">${f.q}</h4>
+        <p style="margin:0; color:var(--text-muted); line-height:1.5;">${f.a}</p>
+      </div>
+    `).join('');
+  });
+</script>
+</body>
+</html>

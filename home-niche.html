@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fold & Fresh Pro | B2B Commercial Laundry & Linen Operations Platform</title>
+<meta name="description" content="Automated laundry management software and scheduled B2B linen services for hotels, gyms, Airbnb hosts, and enterprise facilities.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* --- BASE & UTILITY REUSE STYLES --- */
+  :root {
+    --header-bg: linear-gradient(110deg,#0E6369 0%,#3BB0A4 100%);
+    --text-main: #14212b;
+    --text-muted: #52606d;
+    --accent-color: #0E6369;
+    --border-color: #e4e7eb;
+    --dropdown-bg: #ffffff;
+    --drawer-bg: #ffffff;
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --card-bg: #ffffff;
+    --contrast: #ff8a5c;
+  }
+
+  html[data-theme="dark"] {
+    --header-bg: linear-gradient(110deg,#082f33 0%,#0E6369 100%);
+    --text-main: #f5efe6;
+    --text-muted: #9aa5b1;
+    --accent-color: #3BB0A4;
+    --border-color: #2a363f;
+    --dropdown-bg: #1a232a;
+    --drawer-bg: #12181b;
+    --hover-bg: rgba(255, 255, 255, 0.08);
+    --card-bg: #1a232a;
+  }
+
+  /* --- HEADER & NAVIGATION CSS --- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--header-bg);
+    background-size: 220% 220%;
+    animation: ffHeaderShift 14s ease infinite;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    z-index: 1000;
+    transition: border-color 0.3s ease;
+  }
+  @keyframes ffHeaderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .site-header .logo,.site-header .logo-text,.site-header .nav-toggle span{color:#fff}
+  .site-header .nav-links a{color:rgba(255,255,255,.86)}
+  .site-header .nav-links a:hover,.site-header .nav-links a.is-active{color:var(--contrast)}
+  .site-header .icon-btn,.site-header .pill-toggle-btn{border-color:rgba(255,255,255,.4);color:#fff}
+  .site-header .icon-btn:hover,.site-header .pill-toggle-btn:hover{background:rgba(255,255,255,.18)}
+  .site-header .nav-toggle span{background-color:#fff}
+  @media(prefers-reduced-motion:reduce){.site-header{animation:none}}
+
+  .header-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-main);
+  }
+
+  .nav-container { display: flex; align-items: center; }
+  .nav-menu-drawer { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover, .nav-links a.is-active { color: var(--accent-color); }
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 0.45rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle .moon-icon { display: none; }
+  html[data-theme="dark"] .theme-toggle .sun-icon { display: none; }
+  html[data-theme="dark"] .theme-toggle .moon-icon { display: block; }
+
+  .pill-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .profile-dropdown-wrapper { position: relative; display: inline-block; }
+  .profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 220px;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    display: none;
+    flex-direction: column;
+    z-index: 1005;
+  }
+  html[dir="rtl"] .profile-dropdown-menu { right: auto; left: 0; }
+  .profile-dropdown-menu.is-open { display: flex; }
+  .dropdown-header { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-color); }
+  .dropdown-header h4 { margin: 0; font-size: 0.95rem; color: var(--text-main); }
+  .dropdown-header p { margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--text-muted); }
+  .dropdown-links { list-style: none; margin: 0; padding: 0.4rem 0; }
+  .dropdown-links li a { display: block; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.85rem; color: var(--text-main); }
+  .dropdown-links li a:hover { background-color: var(--hover-bg); }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background-color: var(--text-main); }
+
+  @media (max-width: 868px) {
+    .nav-toggle { display: flex; }
+    .nav-menu-drawer {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 280px;
+      height: calc(100vh - 70px);
+      background-color: var(--drawer-bg);
+      border-left: 1px solid var(--border-color);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1.5rem;
+      transition: right 0.3s ease;
+    }
+    .nav-menu-drawer.is-open { right: 0; }
+    .nav-links { flex-direction: column; align-items: flex-start; width: 100%; }
+    .header-actions { width: 100%; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    .profile-dropdown-menu { position: static; width: 100%; box-shadow: none; }
+  }
+
+  /* --- HOME 2 NICHE PAGE SPECIFIC STYLES --- */
+  .badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: rgba(14, 99, 105, 0.12);
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .niche-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease;
+  }
+
+  .niche-card:hover { transform: translateY(-3px); }
+
+  .pricing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .pricing-card.featured {
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(14, 99, 105, 0.18);
+  }
+
+  .price-tag { font-size: 2.5rem; font-weight: 700; color: var(--text-main); margin: 1rem 0; }
+  .price-tag span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+
+  .feature-check-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+  .feature-check-list li { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+
+  @media (max-width: 868px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="home-niche">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- SAME SITE HEADER -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Brand Logo" width="38" height="38">
+      <span class="logo-text">FoldFresh</span>
+    </a>
+    
+    <nav class="nav-container">
+      <div class="nav-menu-drawer" id="navMenuDrawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home-niche.html" class="is-active">Home 2</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <button class="pill-toggle-btn rtl-toggle" id="rtlToggleBtn" aria-label="Toggle RTL Direction">RTL</button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="icon-btn profile-btn" id="profileDropdownBtn" aria-label="User Account Menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+              <div class="dropdown-header">
+                <h4>FoldFresh</h4>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Signup</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. PRODUCT / NICHE HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge">FoldFresh B2B Platform</span>
+        <h1>Automated Commercial Linen &amp; Laundry Management</h1>
+        <p class="lead">Eliminate inventory shortages and administrative overhead with automated door-to-door linen dispatching, real-time batch tracking, and guaranteed turnarounds.</p>
+        <div class="cta-row">
+          <a class="btn" href="#pricing">Start 14-Day Free Trial</a>
+          <a class="btn btn-ghost" href="contact.html">Request Demo</a>
+        </div>
+        <ul class="hero-facts">
+          <li>✓ 99.8% On-Time SLA guarantee</li>
+          <li>✓ Automated API &amp; ERP sync</li>
+          <li>✓ Eco-friendly commercial process</li>
+        </ul>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=1000&q=70" alt="Commercial laundry operations interface" style="border:1.5px solid var(--border-color);border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM → SOLUTION SECTION -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <h2>From Linen Headaches to Hands-Free Operations</h2>
+        <p class="lead">Managing high-volume commercial textiles should not slow down your core business operations.</p>
+      </div>
+
+      <div class="grid-2" style="margin-top:2.5rem;">
+        <div class="niche-card" style="border-left: 4px solid #e74c3c;">
+          <h3 style="color:#e74c3c;">The Problem</h3>
+          <ul class="feature-check-list">
+            <li>✕ Inconsistent turnarounds leading to guest complaints or delays.</li>
+            <li>✕ Missing inventory with zero batch traceability or accountability.</li>
+            <li>✕ Manual invoicing errors and unpredicted surcharge fees.</li>
+          </ul>
+        </div>
+
+        <div class="niche-card" style="border-left: 4px solid var(--accent-color);">
+          <h3 style="color:var(--accent-color);">The FoldFresh Solution</h3>
+          <ul class="feature-check-list">
+            <li>✓ Scheduled recurring pickups with real-time driver GPS tracking.</li>
+            <li>✓ RFID &amp; batch weight logging for zero missing item disputes.</li>
+            <li>✓ Consolidated itemized billing with automated PMS/ERP invoicing integration.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FEATURE HIGHLIGHTS -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Enterprise Features Built for Scale</h2>
+        <p class="lead">Everything required to digitize and streamline your textile lifecycle.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="niche-card">
+          <h3>Automated Dispatch Engine</h3>
+          <p>Set recurring pickup windows based on occupancy rates or standard schedules, completely hands-free.</p>
+        </div>
+        <div class="niche-card">
+          <h3>Care Label Intelligence</h3>
+          <p>Custom cleaning formulas applied systematically based on textile fabric density, thread count, and stain profiling.</p>
+        </div>
+        <div class="niche-card">
+          <h3>Multi-Facility Dashboard</h3>
+          <p>Manage separate properties, branch locations, and department quotas from one unified admin portal.</p>
+        </div>
+        <div class="niche-card">
+          <h3>Automated e-Invoicing</h3>
+          <p>Sync completed delivery manifest data automatically into accounting platforms like Zoho Books, Xero, and QuickBooks.</p>
+        </div>
+        <div class="niche-card">
+          <h3>Live Order Tracking</h3>
+          <p>Monitor laundry batches across 5 key stages: Picked Up, Sorting, Thermal Clean, Quality Pass, and Out for Delivery.</p>
+        </div>
+        <div class="niche-card">
+          <h3>Compliance Reporting</h3>
+          <p>Download sanitization certificate records and sustainability environmental impact metrics in one click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. USE CASES / INDUSTRIES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tailored for High-Demand Industries</h2>
+        <p class="lead">Serving specialized sectors with zero margin for operational error.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="niche-card">
+          <span class="badge">Hospitality &amp; Hotels</span>
+          <h3>Boutique &amp; Resort Chains</h3>
+          <p>Crisp, high-thread-count bedsheets and duvet covers delivered daily to ensure uninterrupted room turnover timelines.</p>
+        </div>
+        <div class="niche-card">
+          <span class="badge">Fitness &amp; Wellness</span>
+          <h3>Gyms, Spas &amp; Salons</h3>
+          <p>Sanitized, plush towel services with flexible, high-frequency pickup schedules during peak weekend hours.</p>
+        </div>
+        <div class="niche-card">
+          <span class="badge">Short-Term Rentals</span>
+          <h3>Airbnb Hosts &amp; Property Managers</h3>
+          <p>Turnkey turn-over linen packages matched directly with your property reservation calendar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PRICING TEASER -->
+  <section class="section alt" id="pricing">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <h2>Flexible B2B Pricing Plans</h2>
+        <p class="lead">Choose the volume capacity that fits your business. Scale up or down anytime.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="pricing-card">
+          <div>
+            <h3>Starter Ops</h3>
+            <p>Ideal for boutique Airbnb hosts and small clinics.</p>
+            <div class="price-tag">$149 <span>/ month</span></div>
+            <ul class="feature-check-list">
+              <li>Up to 150 kg / month</li>
+              <li>2 Weekly Scheduled Pickups</li>
+              <li>Standard 48-Hour Turnaround</li>
+              <li>Email &amp; Chat Support</li>
+            </ul>
+          </div>
+          <a href="book.html" class="btn btn-ghost" style="width:100%;text-align:center;">Select Starter</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div>
+            <span class="badge" style="position:absolute;top:-12px;right:20px;background:var(--accent-color);color:#fff;">Most Popular</span>
+            <h3>Professional Pro</h3>
+            <p>Designed for mid-sized hotels, spas, and gyms.</p>
+            <div class="price-tag">$399 <span>/ month</span></div>
+            <ul class="feature-check-list">
+              <li>Up to 500 kg / month</li>
+              <li>Daily Pickup &amp; Delivery</li>
+              <li>Express 24-Hour Turnaround</li>
+              <li>Dedicated Account Manager</li>
+              <li>Zoho / API Invoice Integration</li>
+            </ul>
+          </div>
+          <a href="book.html" class="btn" style="width:100%;text-align:center;">Start 14-Day Free Trial</a>
+        </div>
+
+        <div class="pricing-card">
+          <div>
+            <h3>Enterprise Custom</h3>
+            <p>For multi-location hotel chains &amp; large facilities.</p>
+            <div class="price-tag">Custom</div>
+            <ul class="feature-check-list">
+              <li>Unlimited Weight Capacity</li>
+              <li>Custom Same-Day SLAs</li>
+              <li>RFID Linen Tracking</li>
+              <li>Dedicated Route Vehicles</li>
+              <li>Custom API Integration</li>
+            </ul>
+          </div>
+          <a href="contact.html" class="btn btn-ghost" style="width:100%;text-align:center;">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. TESTIMONIALS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Trusted by Operations Teams Worldwide</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="niche-card">
+          <p>"FoldFresh Pro completely solved our housekeeping turnover bottlenecks. We reduced guest linen delay complaints to zero."</p>
+          <p style="margin-top:1rem;font-weight:700;">— Marcus Vance, Operations Director at Riverside Rentals</p>
+        </div>
+        <div class="niche-card">
+          <p>"The automated invoicing API integration with our software saved our financial team over 15 hours of manual data entry every month."</p>
+          <p style="margin-top:1rem;font-weight:700;">— Elena Rostova, General Manager at Harbor Gym &amp; Spa</p>
+        </div>
+        <div class="niche-card">
+          <p>"Consistently immaculate quality, thermal sanitization certificates, and guaranteed delivery times. Highly recommended."</p>
+          <p style="margin-top:1rem;font-weight:700;">— Sarah Jenkins, Owner of Maple Boutique Lodging</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. DEMO / TRIAL CTA BAND -->
+  <section class="cta-band">
+    <div class="wrap text-center">
+      <h2>Ready to streamline your commercial laundry operations?</h2>
+      <p class="lead" style="margin-bottom:1.5rem;opacity:0.9;">Start your 14-day free trial or request a custom audit with our team today.</p>
+      <div class="cta-row" style="margin:0;justify-content:center;">
+        <a class="btn btn-dark" href="#pricing">Start Free Trial</a>
+        <a class="btn btn-ghost" href="contact.html" style="border-color:#fff;color:#fff">Schedule Live Demo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- SAME SITE FOOTER PLACEHOLDER -->
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>
